@@ -412,7 +412,6 @@ Check out the example:
     name='name'
     id='name'
     oninput={change}></input>
-  <span>{name.value}</span>
 
   <!-- The script tag around this is optional -->
   this.change = (e) => {
