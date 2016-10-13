@@ -401,7 +401,7 @@ Additionally, when interacting with elements, we can trigger the DOM to update. 
 
 Check out the example:
 
-```
+``` Tag
 <greeting>
   <h1 class='greeting'>Hello, {name.value || opts.name}!</h1>
   <label for='name'>
@@ -411,10 +411,10 @@ Check out the example:
     type='textbox'
     name='name'
     id='name'
-    oninput={change}></input>
+    oninput={handleChange}></input>
 
   <!-- The script tag around this is optional -->
-  this.change = (e) => {
+  this.handleChange = (e) => {
     return true
   }
 

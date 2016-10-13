@@ -4,8 +4,7 @@
   "description": "A base project for Riot, along with a guide to Riot for FE developers",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --inline --hot",
-    "test": "mocha setup.js src/**/*.spec.js"
+    "start": "webpack-dev-server --progress --inline --hot"
   },
   "author": "Joseph Szczesniak",
   "license": "none",

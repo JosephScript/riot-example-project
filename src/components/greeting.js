@@ -7,10 +7,10 @@
     type='textbox'
     name='name'
     id='name'
-    oninput={change}></input>
+    oninput={handleChange}></input>
 
   <!-- The script tag around this is optional -->
-  this.change = (e) => {
+  this.handleChange = (e) => {
     return true
   }
 
