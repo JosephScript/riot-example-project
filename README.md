@@ -34,8 +34,8 @@ module.exports = {
 
   output: {
     filename: 'app.js',
-    path: __dirname + '/dist',
-  },
+    path: __dirname + '/dist'
+  }
 }
 ```
 
@@ -68,7 +68,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin()
   ]
-
+  ...
 ```
 
 This will generate a file `dist/index.html` containing the following:
@@ -92,15 +92,14 @@ In the output of the `webpack -d` command you'll see that it generates a hash, w
 
 ``` JavaScript
 module.exports = {
-  context: __dirname + '/src',
-  entry: './app.js',
-
+  ...
   output: {
     filename: 'app.[hash].js',
     path: __dirname + '/dist',
   }
-}
+  ...
 ```
+
 ### Hashing
 
 Run it again and you should see the updated file, such as `app.fb49124036ee11c26c35.js`, and updated script `src` attribute.
@@ -262,8 +261,7 @@ You should see the following messages in the browser log:
 
 See [here](http://webpack.github.io/docs/webpack-dev-server.html#hot-module-replacement) for more details.
 
-If you insted want to use an express/node webpack server as middleware, check out (webpack-hot-middleware)[https://github.com/glenjamin/webpack-hot-middleware].
-
+If you instead want to use an express/node webpack server as middleware, check out (webpack-hot-middleware)[https://github.com/glenjamin/webpack-hot-middleware].
 
 We can update our CSS to confirm that it works:
 
@@ -313,7 +311,7 @@ Riot will require an entry point into our application, so let's go ahead and add
 </html>
 ```
 
-And add Riot itself (Note that because Riot is required for our application to run, we’re using `--save `rather than `--save-dev`.):
+And add Riot itself (Note that because Riot is required for our application to run, we’re using `--save` rather than `--save-dev`):
 
 ```
 npm install riot --save
@@ -345,7 +343,6 @@ Now we can update our app.js file to be a super basic component that renders int
   <h1 class='greeting'>Hello, World!</h1>
 </greeting>
 ```
-
 
 ``` JavaScript
 // app.js
