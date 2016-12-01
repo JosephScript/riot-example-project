@@ -272,6 +272,8 @@ body {
 
 ```
 
+Note: Riot will soon support HMR the way react does: https://github.com/riot/riot/pull/2095
+
 ## Riot
 
 
