@@ -27,7 +27,7 @@ npm install webpack --save-dev
 
 Let's assume we have all of our app's source code inside `/src` and make a basic webpack configuration in `webpack.config.js`, we will build on it as we go.
 
-``` JavaScript
+``` js
 module.exports = {
   context: __dirname + '/src',
   entry: './app.js',
@@ -43,7 +43,7 @@ This tells webpack that our app is in the src directory and the entry point to o
 
 Make sure it works by adding the file `src/app.js` and putting a `console.log` into it, just to make sure everything works.
 
-``` JavaScript
+``` js
 // app.js
 console.log('Hello world!')
 ```
@@ -60,7 +60,7 @@ Go ahead and install the plugin:
 
 Now we have to add the plugin to our `webpack.config.js`:
 
-``` JavaScript
+``` js
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -73,7 +73,7 @@ module.exports = {
 
 This will generate a file `dist/index.html` containing the following:
 
-``` HTML
+``` html
 <!DOCTYPE html>
 <html>
   <head>
@@ -90,7 +90,7 @@ This is only the most basic configuration, so review the github page. Sometimes 
 
 In the output of the `webpack -d` command you'll see that it generates a hash, which we can use for cache busting. All you have to do is change the webpack.config.js file to include the hash:
 
-``` JavaScript
+``` js
 module.exports = {
   ...
   output: {
@@ -127,9 +127,8 @@ webpack-dev-server --progress --inline
 
 This is a really clumsy thing to type, so let's add it as npm start:
 
-``` JSON
+``` js
 // package.json
-
 {
   ...
   "scripts": {
@@ -137,14 +136,13 @@ This is a really clumsy thing to type, so let's add it as npm start:
   }
   ...
 }
-
 ```
 
 ### Proxy
 
 The Webpack dev server makes use of `http-proxy-middleware` to optionally proxy requests to a separate, possibly external, backend server.
 
-```
+``` js
 // webpack.config.js
 {
   devServer: {
@@ -172,7 +170,7 @@ For example, you can use loaders to tell webpack to load CoffeeScript or JSX.
 
 Update your `webpack.config.js` to include some loaders:
 
-``` JavaScript
+``` js
 module.exports = {
   ...
   module: {
@@ -213,7 +211,7 @@ npm install babel-loader babel-core babel-preset-es2015 --save-dev
 
 Now go ahead and add the loader and we'll tell it to use the preset `es2015`, and to test `.js` files, but exclude node_modules and bower_components.
 
-``` JavaScript
+``` js
 // webpack.config.js
 module.exports = {
   ...
@@ -232,7 +230,7 @@ module.exports = {
 
 Change `require('./styles.css')` to the following:
 
-```
+``` js
 import './styles.css'
 ```
 
@@ -265,7 +263,7 @@ If you instead want to use an express/node webpack server as middleware, check o
 
 We can update our CSS to confirm that it works:
 
-``` CSS
+``` css
 body {
   background-color: blue;
 }
@@ -286,7 +284,7 @@ First we have to add riot to our loaders.
 npm install riotjs-loader --save-dev
 ```
 
-``` JavaScript
+``` js
 // webpack.config.js
 module.exports = {
   ...
@@ -303,7 +301,7 @@ module.exports = {
 
 Riot will require an entry point into our application, so let's go ahead and add an HTML template:
 
-``` HTML
+``` html
 // index.template.html
 <!DOCTYPE html>
 <html>
@@ -315,13 +313,13 @@ Riot will require an entry point into our application, so let's go ahead and add
 
 And add Riot itself (Note that because Riot is required for our application to run, we’re using `--save` rather than `--save-dev`):
 
-```
+``` 
 npm install riot --save
 ```
 
 You'll have to set `HtmlWebpackPlugin` to use this template, and you'l also need to tell webpack to provide the correct plugin to your app:
 
-```
+``` js
 module.exports = {
   ...
   plugins: [
@@ -338,7 +336,7 @@ module.exports = {
 
 Now we can update our app.js file to be a super basic component that renders into the DOM using Riot's syntax. We're going to create a basic component that will contain our message, and we'll mount it in app.js:
 
-```
+```html
 // components/greeting.tag
 // optionally use 'components/greeting.js'
 <greeting>
@@ -346,7 +344,7 @@ Now we can update our app.js file to be a super basic component that renders int
 </greeting>
 ```
 
-``` JavaScript
+``` js
 // app.js
 import './styles.css'
 import './components/greeting.tag'
@@ -358,7 +356,7 @@ riot.mount('greeting')
 
 And let's change our CSS to something more useful:
 
-``` CSS
+``` css
 .greeting {
   color: red;
 }
@@ -373,14 +371,14 @@ Riot it component based, so you'll see your `<greeting></greeting>` tag in the H
 
 You can also pass properties to your components from the mount function, for example:
 
-```
+``` js
 // app.js
 riot.mount('greeting', { name: 'World' })
 ```
 
 And then
 
-```
+``` html
 // components/greeting.tag
 // optionally use 'components/greeting.js'
 <greeting>
@@ -400,7 +398,7 @@ Additionally, when interacting with elements, we can trigger the DOM to update. 
 
 Check out the example:
 
-``` Tag
+``` html
 <greeting>
   <h1 class='greeting'>Hello, {name.value || opts.name}!</h1>
   <label for='name'>
@@ -413,10 +411,11 @@ Check out the example:
     oninput={handleChange}></input>
 
   <!-- The script tag around this is optional -->
-  this.handleChange = (e) => {
-    return true
-  }
-
+  <script>
+    this.handleChange = (e) => {
+      return true
+    }
+  </script>
 </greeting>
 ```
 

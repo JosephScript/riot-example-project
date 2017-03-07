@@ -10,8 +10,10 @@
     oninput={handleChange}></input>
 
   <!-- The script tag around this is optional -->
-  this.handleChange = (e) => {
-    return true
-  }
+  <script>
+    this.handleChange = (e) => {
+      return true
+    }
+  </script>
 
 </greeting>
