@@ -221,7 +221,7 @@ module.exports = {
     loaders: [
     ...
     {
-        test: /\.js$/,
+        test: /\.(js|tag)$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         query: {
@@ -339,8 +339,8 @@ module.exports = {
 Now we can update our app.js file to be a super basic component that renders into the DOM using Riot's syntax. We're going to create a basic component that will contain our message, and we'll mount it in app.js:
 
 ```
-// components/greeting.js
-// optionally use 'components/greeting.tag'
+// components/greeting.tag
+// optionally use 'components/greeting.js'
 <greeting>
   <h1 class='greeting'>Hello, World!</h1>
 </greeting>
@@ -349,7 +349,7 @@ Now we can update our app.js file to be a super basic component that renders int
 ``` JavaScript
 // app.js
 import './styles.css'
-import './components/greeting.js'
+import './components/greeting.tag'
 
 // mount the custom tag on the page
 riot.mount('greeting')
@@ -381,8 +381,8 @@ riot.mount('greeting', { name: 'World' })
 And then
 
 ```
-// components/greeting.js
-// optionally use 'components/greeting.tag'
+// components/greeting.tag
+// optionally use 'components/greeting.js'
 <greeting>
   <h1 class='greeting'>Hello, {opts.name}!</h1>
 </greeting>

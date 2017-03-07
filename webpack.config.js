@@ -21,7 +21,7 @@ module.exports = {
   ],
   module: {
     preLoaders: [
-      { test: /\.js$|\.tag$/,
+      { test: /\.tag$/,
         exclude: /node_modules/,
         loader: 'riotjs-loader',
         query: { type: 'none' }
@@ -29,7 +29,7 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.js$|\.tag$/,
+        test: /\.(js|tag)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
