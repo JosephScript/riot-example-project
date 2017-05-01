@@ -1,14 +1,15 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var webpack = require('webpack')
+var path = require('path')
 
 module.exports = {
-  context: __dirname + '/src',
+  context: path.join(__dirname, '/src'),
   entry: [
     './app.js'
   ],
   output: {
     filename: 'app.js',
-    path: __dirname + '/dist'
+    path: path.join(__dirname, '/dist')
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -23,7 +24,7 @@ module.exports = {
     preLoaders: [
       { test: /\.tag$/,
         exclude: /node_modules/,
-        loader: 'riotjs-loader',
+        loader: 'tag-loader',
         query: { type: 'none' }
       }
     ],

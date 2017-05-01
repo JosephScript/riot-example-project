@@ -29,12 +29,12 @@ Let's assume we have all of our app's source code inside `/src` and make a basic
 
 ``` js
 module.exports = {
-  context: __dirname + '/src',
+  context: path.join(__dirname, '/src'),
   entry: './app.js',
 
   output: {
     filename: 'app.js',
-    path: __dirname + '/dist'
+    path: path.join(__dirname, '/dist')
   }
 }
 ```
@@ -95,7 +95,7 @@ module.exports = {
   ...
   output: {
     filename: 'app.[hash].js',
-    path: __dirname + '/dist',
+    path: path.join(__dirname, '/dist'),
   }
   ...
 ```
@@ -281,7 +281,7 @@ First we have to add riot to our loaders.
 
 
 ```
-npm install riotjs-loader --save-dev
+npm install tag-loader --save-dev
 ```
 
 ``` js
@@ -292,7 +292,7 @@ module.exports = {
     preLoaders: [
       { test: /\.js$|\.tag$/,
         exclude: /node_modules/,
-        loader: 'riotjs-loader',
+        loader: 'tag-loader',
         query: { type: 'none' }
       }
     ],
