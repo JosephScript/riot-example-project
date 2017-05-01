@@ -350,6 +350,7 @@ Now we can update our app.js file to be a super basic component that renders int
 
 ``` js
 // app.js
+import 'riot-hot-reload'
 import './styles.css'
 import './components/greeting.tag'
 
