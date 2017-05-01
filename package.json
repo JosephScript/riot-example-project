@@ -15,8 +15,9 @@
     "css-loader": "^0.26.0",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.1",
+    "riot-hot-reload": "^1.0.0",
+    "riot-tag-loader": "^1.0.0",
     "style-loader": "^0.13.1",
-    "tag-loader": "^0.3.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.5"

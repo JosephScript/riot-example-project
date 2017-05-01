@@ -281,7 +281,7 @@ First we have to add riot to our loaders.
 
 
 ```
-npm install tag-loader --save-dev
+npm install riot-tag-loader --save-dev
 ```
 
 ``` js
@@ -292,7 +292,7 @@ module.exports = {
     preLoaders: [
       { test: /\.js$|\.tag$/,
         exclude: /node_modules/,
-        loader: 'tag-loader',
+        loader: 'riot-tag-loader',
         query: { type: 'none' }
       }
     ],

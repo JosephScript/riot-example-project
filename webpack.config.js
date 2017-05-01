@@ -24,7 +24,7 @@ module.exports = {
     preLoaders: [
       { test: /\.tag$/,
         exclude: /node_modules/,
-        loader: 'tag-loader',
+        loader: 'riot-tag-loader',
         query: { type: 'none' }
       }
     ],

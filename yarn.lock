@@ -998,13 +998,13 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
-debug@2.6.1, debug@^2.1.1:
+debug@2.6.1, debug@^2.1.1, debug@^2.2.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
   dependencies:
     ms "0.7.2"
 
-debug@^2.2.0, debug@~2.2.0:
+debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
@@ -1793,7 +1793,7 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-loader-utils@^0.2.11, loader-utils@^0.2.16, loader-utils@^0.2.6, loader-utils@~0.2.5:
+loader-utils@^0.2.11, loader-utils@^0.2.16, loader-utils@~0.2.5:
   version "0.2.17"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
   dependencies:
@@ -2728,9 +2728,19 @@ riot-compiler@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/riot-compiler/-/riot-compiler-3.2.1.tgz#c65ce56efb1228572523d665746dc4cc17a19ba9"
 
+riot-hot-reload@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/riot-hot-reload/-/riot-hot-reload-1.0.0.tgz#a99da0659ca0eff6e140758454e687f7c06e4ebe"
+
 riot-observable@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/riot-observable/-/riot-observable-3.0.0.tgz#8bbd2daf72a2141bb043082df4023dc504bad2eb"
+
+riot-tag-loader@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/riot-tag-loader/-/riot-tag-loader-1.0.0.tgz#bbd94290f5cf946ac684985275d977442ee4868e"
+  dependencies:
+    loader-utils "^0.2.16"
 
 riot-tmpl@^3.0.3:
   version "3.0.3"
@@ -3003,12 +3013,6 @@ svgo@^0.7.0:
     mkdirp "~0.5.1"
     sax "~1.2.1"
     whet.extend "~0.9.9"
-
-tag-loader@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/tag-loader/-/tag-loader-0.3.0.tgz#a873d6006e30d3edf1cd5ae8c62750dd00509373"
-  dependencies:
-    loader-utils "^0.2.6"
 
 tapable@^0.1.8, tapable@~0.1.8:
   version "0.1.10"
