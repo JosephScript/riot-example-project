@@ -270,7 +270,11 @@ body {
 
 ```
 
-> Note: Riot will soon support HMR the way react does: https://github.com/riot/riot/pull/2095
+Riot now supports HMR the way react does. So install `riot-hot-reload` and add this to your app.js:
+
+```javascript
+import 'riot-hot-reload'
+```
 
 ## Riot
 
