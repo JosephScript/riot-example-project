@@ -5,7 +5,7 @@ In this Riot walk through we're going to be using the Riot JavaScript library fo
 ## Setting up the project:
 
 ```
-mkdir riot-base-project && cd riot-base-project
+mkdir riot-example-project && cd riot-example-project
 git init
 npm init
 ```
