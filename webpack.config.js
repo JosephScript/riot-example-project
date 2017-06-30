@@ -21,15 +21,15 @@ module.exports = {
     })
   ],
   module: {
-    preLoaders: [
-      { test: /\.tag$/,
-        exclude: /node_modules/,
-        loader: 'riot-tag-loader',
-        query: { type: 'none' }
-      }
-    ],
-    loaders: [
+    rules: [
       {
+        test: /\.tag$/,
+        loader: 'riot-tag-loader',
+        enforce: 'pre',
+        query: {
+          type: 'es6'
+        }
+      }, {
         test: /\.(js|tag)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',

@@ -1,18 +1,25 @@
 <greeting>
-  <h1 class='greeting'>Hello, {name.value || opts.name}!</h1>
+  <h1 class='greeting'>Hello, {this.name}!</h1>
   <label for='name'>
     Type a new name:
   </label>
   <input
     type='textbox'
     name='name'
+    ref='name'
     id='name'
     oninput={handleChange}></input>
 
   <!-- The script tag around this is optional -->
   <script>
+    this.name = this.opts.name
+
     this.handleChange = (e) => {
-      return true
+      if (this.refs.name.value) {
+        this.name = this.refs.name.value
+      } else {
+        this.name = this.opts.name
+      }
     }
   </script>
 

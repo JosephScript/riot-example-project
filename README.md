@@ -174,7 +174,7 @@ Update your `webpack.config.js` to include some loaders:
 module.exports = {
   ...
   module: {
-    loaders: [
+    rules: [
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.png$/, loader: 'url-loader?limit=100000' },
       { test: /\.jpg$/, loader: 'file-loader' }
@@ -216,7 +216,7 @@ Now go ahead and add the loader and we'll tell it to use the preset `es2015`, an
 module.exports = {
   ...
   module: {
-    loaders: [
+    rules: [
     ...
     {
         test: /\.(js|tag)$/,
@@ -281,7 +281,7 @@ import 'riot-hot-reload'
 
 Let's start off with a really dead simple app just to make sure our build process is working and Riot works as we expect. Then we can start adding in pieces and tests as we go along. For now, let's just get a `p` tag on the page with a hello world.
 
-First we have to add riot to our loaders.
+First we have to add riot to our loaders. Using the option `enforce: 'pre'` will tell tags to be run through this loader first.
 
 
 ```
@@ -293,12 +293,16 @@ npm install riot-tag-loader --save-dev
 module.exports = {
   ...
   module: {
-    preLoaders: [
-      { test: /\.js$|\.tag$/,
-        exclude: /node_modules/,
+    rules: [
+      {
+        test: /\.tag$/,
         loader: 'riot-tag-loader',
-        query: { type: 'none' }
-      }
+        enforce: 'pre',
+        query: {
+          type: 'es6' // transpile the riot tags using babel
+        }
+      },
+      ...
     ],
       ...
 ```
@@ -387,40 +391,52 @@ And then
 // components/greeting.tag
 // optionally use 'components/greeting.js'
 <greeting>
-  <h1 class='greeting'>Hello, {opts.name}!</h1>
+  <h1 class='greeting'>Hello, {this.opts.name}!</h1>
 </greeting>
 ```
 
-You access options using the `opts` object, and display those objects using the `{opts.property}` syntax, where `property` is the property you want to access.
+You access options using the `opts` object, and display those objects using the `{this.opts.property}` syntax, where `property` is the property you want to access. Within the component itself, `this` is optional, but I prefer it because I like to be explicit.
+
+Additionally, you can create any new variables you want to access via `this`, for example, `this.name = 'World'` would assign a new variable that is the string `World` which is accessible within the tag itself. 
+
+Be careful, in javascript objects are passed by reference, so if you change an object's reference the object itself changes too! It's useful to copy the object, or pass the object properties themselves to `this`.
 
 ## Events and Handlers
 
-You can also interact with the user using events. You can use any of the built in JavaScript events such as `onsubmit`, `oninput`, etc. When you interact with an element on the page, it's value is automatically bound to "this" within your component with the same name or id.
+You can also interact with the user using events. You can use any of the built in JavaScript events such as `onsubmit`, `oninput`, etc. When you interact with an element on the page, it's value is automatically bound to it's `ref` within your component. These are automatically bound using the JavaScript method `addEventListener`, and when the component is unmounted it is removed using `removeEventListener`.
 
-For example, a textbox with `name="name"` will be bound to `this.name`.
+For example, a textbox with `ref="name"` will be bound to `this.refs.name`.
 
-Additionally, when interacting with elements, we can trigger the DOM to update. By default, this is disabled (except for checkboxes or radio buttons), because `e.preventDefault()` is already called for you, because this is what you usually want (or forget to do). So all you have to do is set a handler to return "true" and your DOM will update.
+Additionally, when interacting with elements, we can trigger the DOM to update. You can also prevent default behavior with `e.preventDefault()`.
 
 Check out the example:
 
 ``` html
 <greeting>
-  <h1 class='greeting'>Hello, {name.value || opts.name}!</h1>
+  <h1 class='greeting'>Hello, {this.name}!</h1>
   <label for='name'>
     Type a new name:
   </label>
   <input
     type='textbox'
     name='name'
+    ref='name'
     id='name'
     oninput={handleChange}></input>
 
   <!-- The script tag around this is optional -->
   <script>
+    this.name = this.opts.name
+
     this.handleChange = (e) => {
-      return true
+      if (this.refs.name.value) {
+        this.name = this.refs.name.value
+      } else {
+        this.name = this.opts.name
+      }
     }
   </script>
+
 </greeting>
 ```
 
